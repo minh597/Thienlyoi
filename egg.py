@@ -20,8 +20,8 @@ loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/pub
 
 GUIDE = """**EGG HUB FULL GUIDE (LATEST 24 NOV 2025)**
 
-1. Inject any executor (Solara / Delta / Codex recommended)
-2. Paste the script below → Execute
+1. Inject any executor (Solara / Delta / Codex)
+2. Paste script → Execute
 
 ```lua
-''' + EGGHUB_SCRIPT + '''
+""" + EGGHUB_SCRIPT.strip() + """
