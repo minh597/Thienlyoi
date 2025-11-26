@@ -4,17 +4,19 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return jsonify({"message": "Hello from Flask on Vercel 2025!"})
+    return jsonify({
+        "message": "API Thienlyoi đang chạy ngon trên Vercel!",
+        "status": "success",
+        "author": "minh597"
+    })
 
-@app.route("/api/hello")
-def hello():
+@app.route("/api/test")
+def test():
     name = request.args.get("name", "bạn")
-    return jsonify({"msg": f"Xin chào {name} từ serverless!"})
+    return jsonify({"msg": f"Chào {name} từ Thienlyoi API!"})
 
-# Bắt buộc phải có hàm này cho Vercel serverless
+# Quan trọng: Vercel yêu cầu có hàm này
 def handler(environ, start_response):
-    # Vercel sẽ gọi hàm này thay vì chạy Flask trực tiếp
-    from flask import Flask
     return app(environ, start_response)
 
 if __name__ == "__main__":
