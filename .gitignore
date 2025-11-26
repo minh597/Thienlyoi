@@ -1,4 +1,3 @@
-__pycache__
-.env
-venv
-*.pyc
+git add .
+git commit -m "fix: add routes"
+git push
