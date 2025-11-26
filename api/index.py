@@ -1,20 +1,14 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
+from flask import Request  # cho Vercel Serverless Adapter
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return jsonify({
-        "message": "API Thienlyoi đang chạy ngon trên Vercel!",
-        "status": "success",
-        "author": "minh597"
-    })
+    return jsonify({"message": "Hello from Flask on Vercel!"})
 
-@app.route("/api/test")
-def test():
-    name = request.args.get("name", "bạn")
-    return jsonify({"msg": f"Chào {name} từ Thienlyoi API!"})
-
-# Bắt buộc: export handler cho Vercel
-def handler(environ, start_response):
-    return app(environ, start_response)
+# Vercel sẽ dùng WSGI adapter
+from flask import _request_ctx_stack
+def handler(request: Request):
+    with app.app_context():
+        return app.full_dispatch_request()
